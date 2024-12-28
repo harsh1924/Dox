@@ -1,14 +1,64 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { useEditorStore } from "@/store/use-editor-store";
-import { BoldIcon, ChevronDownIcon, ItalicIcon, ListTodoIcon, LucideIcon, MessageSquarePlusIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, SpellCheckIcon, UnderlineIcon, Undo2Icon } from "lucide-react";
-import { type Level } from '@tiptap/extension-heading'; 
 
-// Time Stamp: 02:19:00
+import { useEditorStore } from "@/store/use-editor-store";
+
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
+
+import { BoldIcon, ChevronDownIcon, HighlighterIcon, ItalicIcon, ListTodoIcon, LucideIcon, MessageSquarePlusIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, SpellCheckIcon, UnderlineIcon, Undo2Icon } from "lucide-react";
+
+import { type Level } from '@tiptap/extension-heading';
+import { SketchPicker, type ColorResult } from 'react-color';
+
+// Time Stamp: 02:34:00
+
+const HighlightColorButton = () => {
+    const { editor } = useEditorStore();
+    const value = editor?.getAttributes('highlight').color || '#ffffff';
+    const onChange = (color: ColorResult) => {
+        editor?.chain().focus().setHighlight({ color: color.hex }).run()
+    };
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <button className='flex flex-col justify-center items-center hover:bg-neutral-200/80 px-1.5 rounded-sm min-w-7 h-7 text-sm overflow-hidden shrink-0'>
+                    <HighlighterIcon className="size-4" />
+                </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="p-0 border">
+                <SketchPicker color={value} onChange={onChange} />
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
+
+const TextColorButton = () => {
+    const { editor } = useEditorStore();
+    const value = editor?.getAttributes('textStyle').color || '#000000';
+    const onChange = (color: ColorResult) => {
+        editor?.chain().focus().setColor(color.hex).run()
+    };
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <button className='flex flex-col justify-center items-center hover:bg-neutral-200/80 px-1.5 rounded-sm min-w-7 h-7 text-sm overflow-hidden shrink-0'>
+                    <span className="text-xs">
+                        B
+                    </span>
+                    <div className="w-full h-0.5" style={{ backgroundColor: value }} />
+                </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="p-0 border">
+                <SketchPicker color={value} onChange={onChange} />
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
 
 const HeadingLevelButton = () => {
     const { editor } = useEditorStore();
@@ -207,22 +257,24 @@ export const Toolbar = () => {
             {sections[0].map((item) => (
                 <ToolbarButton key={item.label} {...item} />
             ))}
-
             <Separator orientation="vertical" className="bg-neutral-300 h-6" />
+
             <FontFamilyButton />
-
             <Separator orientation="vertical" className="bg-neutral-300 h-6" />
+
             <HeadingLevelButton />
-
             <Separator orientation="vertical" className="bg-neutral-300 h-6" />
+
             {/* TODO: Font Size */}
             <Separator orientation="vertical" className="bg-neutral-300 h-6" />
+
             {sections[1].map((item) => (
                 <ToolbarButton key={item.label} {...item} />
             ))}
-            {/* TODO TEXT COLOR */}
-            {/* TODO highlight COLOR */}
+            <TextColorButton />
+            <HighlightColorButton />
             <Separator orientation="vertical" className="bg-neutral-300 h-6" />
+            
             {/* todo link */}
             {/* todo image */}
             {/* todo align */}
