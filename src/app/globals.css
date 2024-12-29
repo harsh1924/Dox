@@ -92,19 +92,26 @@ body {
 }
 
 .tiptap {
-
-  img {
-    display: block;
-    height: auto;
-    margin: 1.5rem 0;
-    max-width: 100%;
-
-    &.ProseMirror-selectednode {
-      outline: 3px solid var(--purple);
-    }
+  a {
+    @apply text-purple-600;
+    cursor: pointer;
+  &:hover {
+      @apply underline;
+}
   }
-  table {
-    border-collapse: collapse;
+
+img {
+  display: block;
+  height: auto;
+  margin: 1.5rem 0;
+  max-width: 100%;
+  &.ProseMirror-selectednode {
+      outline: 3px solid var(--purple);
+}
+  }
+
+table {
+  border-collapse: collapse;
   margin: 0;
   overflow: hidden;
   table-layout: fixed;
