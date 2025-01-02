@@ -22,6 +22,8 @@ import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
 
+import { FontSizeExtension } from '@/extensions/font-size';
+
 
 export const EditorPage = () => {
 
@@ -54,6 +56,7 @@ export const EditorPage = () => {
     },
     extensions: [
       StarterKit,
+      FontSizeExtension,
       Color,
       FontFamily,
       TextStyle,
