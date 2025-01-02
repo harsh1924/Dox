@@ -23,6 +23,8 @@ import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
 
 import { FontSizeExtension } from '@/extensions/font-size';
+import { LineHeightExtension } from '@/extensions/line-height';
+import { Ruler } from './ruler';
 
 
 export const EditorPage = () => {
@@ -30,6 +32,7 @@ export const EditorPage = () => {
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
+    immediatelyRender: false,
     onCreate({ editor }) {
       setEditor(editor);
     },
@@ -68,6 +71,7 @@ export const EditorPage = () => {
       Image,
       ImageResize,
       TaskList,
+      LineHeightExtension,
       TextAlign.configure({
         types: ['heading', 'paragraph']
       }),
@@ -96,6 +100,7 @@ export const EditorPage = () => {
 
   return (
     <div className="bg-[#F9FBFD] print:bg-white px-4 print:p-0 print:overflow-visible overflow-x-auto size-full">
+      <Ruler />
       <div className="flex justify-center mx-auto py-4 print:py-0 w-[816px] print:w-full min-w-max print:min-w-0">
         <EditorContent editor={editor} />
       </div>
