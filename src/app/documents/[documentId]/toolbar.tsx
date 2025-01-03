@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-// Time Stamp: 04:00:00
+// Time Stamp: 04:24:00
 
 const LineHeightButton = () => {
     const { editor } = useEditorStore();
