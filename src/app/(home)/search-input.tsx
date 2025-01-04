@@ -6,8 +6,6 @@ import { useSearchParam } from "@/hooks/use-search-param"
 import { SearchIcon, XIcon } from "lucide-react"
 import React, { useRef, useState } from "react"
 
-// Time Stamp: 05:01:00
-
 export const SearchInput = () => {
     const [search, setSearch] = useSearchParam();
     const [value, setValue] = useState(search);
