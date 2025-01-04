@@ -5,7 +5,7 @@ import { HomeNavbar } from "./navbar";
 import { TemplateGallery } from "./template-gallery";
 import { api } from "../../../convex/_generated/api";
 
-// Time Stamp: 05:33:30
+// Time Stamp: 06:00:00
 
 export default function Home() {
   const documents = useQuery(api.documents.get);
