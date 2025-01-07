@@ -27,6 +27,7 @@ import { LineHeightExtension } from '@/extensions/line-height';
 import { Ruler } from './ruler';
 
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+import { Threads } from './threads';
 
 export const EditorPage = () => {
   const liveblocks = useLiveblocksExtension();
@@ -60,7 +61,6 @@ export const EditorPage = () => {
     },
     extensions: [
       liveblocks,
-      StarterKit,
       FontSizeExtension,
       Color,
       FontFamily,
@@ -74,6 +74,9 @@ export const EditorPage = () => {
       ImageResize,
       TaskList,
       LineHeightExtension,
+      StarterKit.configure({
+        history: false
+      }),
       TextAlign.configure({
         types: ['heading', 'paragraph']
       }),
@@ -105,6 +108,7 @@ export const EditorPage = () => {
       <Ruler />
       <div className="flex justify-center mx-auto py-4 print:py-0 w-[816px] print:w-full min-w-max print:min-w-0">
         <EditorContent editor={editor} />
+        <Threads editor={editor} />
       </div>
     </div>
   );
