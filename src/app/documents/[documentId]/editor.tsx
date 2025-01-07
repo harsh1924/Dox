@@ -5,7 +5,6 @@ import { useEditorStore } from '@/store/use-editor-store';
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import Table from '@tiptap/extension-table'
@@ -22,13 +21,15 @@ import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
 
+
 import { FontSizeExtension } from '@/extensions/font-size';
 import { LineHeightExtension } from '@/extensions/line-height';
 import { Ruler } from './ruler';
 
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 
 export const EditorPage = () => {
-
+  const liveblocks = useLiveblocksExtension();
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
@@ -58,6 +59,7 @@ export const EditorPage = () => {
       setEditor(editor);
     },
     extensions: [
+      liveblocks,
       StarterKit,
       FontSizeExtension,
       Color,
