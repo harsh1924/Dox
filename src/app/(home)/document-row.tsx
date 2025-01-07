@@ -8,7 +8,6 @@ import { format } from 'date-fns';
 import { DocumentMenu } from "./document-menu";
 import { useRouter } from "next/navigation";
 
-
 interface DocumentRowProps {
     document: Doc<"documents">;
 }

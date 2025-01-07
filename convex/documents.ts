@@ -3,9 +3,36 @@ import { mutation, query } from "./_generated/server";
 import { paginationOptsValidator } from "convex/server";
 
 export const get = query({
-    args: { paginationOpts: paginationOptsValidator },
+    args: { paginationOpts: paginationOptsValidator, search: v.optional(v.string()) },
     handler: async (ctx, args) => {
-        return await ctx.db.query("documents").paginate(args.paginationOpts);
+
+        const user = await ctx.auth.getUserIdentity();
+        if (!user) throw new ConvexError("Unauthorized");
+
+        const organizationId = (user.organization_id ?? undefined) as | string | undefined;
+
+        // Search within Organization
+        if (args.search && organizationId) return await ctx.db
+            .query("documents")
+            .withSearchIndex("search_title", (q) => q.search("title", args.search!).eq("organizationId", organizationId)).paginate(args.paginationOpts);
+
+        // Personal Search
+        if (args.search) return await ctx.db
+            .query("documents")
+            .withSearchIndex("search_title", (q) => q.search("title", args.search!).eq("ownerId", user.subject))
+            .paginate(args.paginationOpts);
+
+        // All Docs Inside Organization
+        if (organizationId) return await ctx.db
+            .query("documents")
+            .withIndex("by_organization_id", (q) => q.eq("organizationId", organizationId))
+            .paginate(args.paginationOpts);
+
+        // All Personal DocsF
+        return await ctx.db
+            .query("documents")
+            .withIndex("by_owner_id", (q) => q.eq("ownerId", user.subject))
+            .paginate(args.paginationOpts);
     },
 });
 
@@ -15,13 +42,18 @@ export const create = mutation({
         initialContent: v.optional(v.string())
     },
     handler: async (ctx, args) => {
-        const user = await ctx.auth.getUserIdentity();
 
+        const user = await ctx.auth.getUserIdentity();
         if (!user) throw new ConvexError("Unauthorized");
+
+        const organizationId = (user.organization_id ?? undefined) as
+            | string
+            | undefined;
 
         const documentId = await ctx.db.insert("documents", {
             title: args.title ?? "Untitled Document",
             ownerId: user.subject,
+            organizationId,
             initialContent: args.initialContent
         });
 
