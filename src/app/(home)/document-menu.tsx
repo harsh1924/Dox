@@ -7,7 +7,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 import { Id } from "../../../convex/_generated/dataModel"
 
-
 interface DocumentMenuProps {
     documentId: Id<"documents">;
     title: string;
