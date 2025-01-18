@@ -9,32 +9,39 @@ import Highlight from '@tiptap/extension-highlight';
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link';
 import Table from '@tiptap/extension-table'
-import TaskItem from '@tiptap/extension-task-item';
-import { useEditor, EditorContent } from '@tiptap/react';
-import { useEditorStore } from '@/store/use-editor-store';
 
-import StarterKit from '@tiptap/starter-kit';
-import TaskList from '@tiptap/extension-task-list';
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
-import ImageResize from 'tiptap-extension-resize-image';
-import Underline from '@tiptap/extension-underline';
-import TextStyle from '@tiptap/extension-text-style';
+import TaskItem from '@tiptap/extension-task-item';
+import TaskList from '@tiptap/extension-task-list';
 import TextAlign from '@tiptap/extension-text-align';
+import TextStyle from '@tiptap/extension-text-style';
+import Underline from '@tiptap/extension-underline';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import ImageResize from 'tiptap-extension-resize-image';
 
 
 import { FontSizeExtension } from '@/extensions/font-size';
 import { LineHeightExtension } from '@/extensions/line-height';
+import { useEditorStore } from '@/store/use-editor-store';
 import { Ruler } from './ruler';
 
 import { Threads } from './threads';
 
-export const EditorPage = () => {
+interface EditorProps {
+  initialContent?: string | undefined;
+}
+
+export const EditorPage = ({ initialContent }: EditorProps) => {
   const leftMargin = useStorage((root) => root.leftMargin);
   const rightMargin = useStorage((root) => root.rightMargin);
 
-  const liveblocks = useLiveblocksExtension();
+  const liveblocks = useLiveblocksExtension({
+    initialContent,
+    offlineSupport_experimental: true
+  });
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({

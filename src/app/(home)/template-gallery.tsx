@@ -53,7 +53,7 @@ export const TemplateGallery = () => {
                                 )}>
                                     <button
                                         disabled={isCreating}
-                                        onClick={() => onTemplateClick(template.label, "")}
+                                        onClick={() => onTemplateClick(template.label, template.initialContent)}
                                         style={{ backgroundImage: `url(${template.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
                                         className="size-full hover:border-blue-500 rounded-sm border hover:bg-blue-50 transition flex flex-col items-center justify-center gap-y-4 bg-white"
                                     />
