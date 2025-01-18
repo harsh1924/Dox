@@ -8,7 +8,6 @@ import { InboxNotification, InboxNotificationList } from "@liveblocks/react-ui";
 import { BellIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
-
 export const Inbox = () => {
     return (
         <ClientSideSuspense fallback={

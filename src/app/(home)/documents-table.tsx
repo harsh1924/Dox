@@ -13,8 +13,6 @@ import { LoaderIcon } from "lucide-react";
 import { DocumentRow } from "./document-row";
 import { Button } from "@/components/ui/button";
 
-// 8:30:35
-
 interface DocumentsTableProps {
     documents: Doc<"documents">[] | undefined;
     loadMore: (numItems: number) => void;
