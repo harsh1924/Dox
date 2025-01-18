@@ -6,7 +6,7 @@ export const templates = [
     },
     {
         id: "software-proposal",
-        label: "Software Develoment Proposal",
+        label: "Software Development Proposal",
         imageUrl: "/software-proposal.svg"
     },
     {
