@@ -1,8 +1,8 @@
 'use client';
 
-import { Button } from "@/components/ui/button";
 import { AlertTriangleIcon } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const ErrorPage = ({ error, reset }: {
     error: Error & { digest?: string };

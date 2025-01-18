@@ -1,12 +1,12 @@
+import { format } from 'date-fns';
+import { Building2Icon, CircleUserIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { SiGoogledocs } from 'react-icons/si';
 import { TableCell, TableRow } from "@/components/ui/table"
+import { DocumentMenu } from "./document-menu";
 import { Doc } from "../../../convex/_generated/dataModel"
 
-import { SiGoogledocs } from 'react-icons/si';
-import { Building2Icon, CircleUserIcon } from "lucide-react";
 
-import { format } from 'date-fns';
-import { DocumentMenu } from "./document-menu";
-import { useRouter } from "next/navigation";
 
 interface DocumentRowProps {
     document: Doc<"documents">;

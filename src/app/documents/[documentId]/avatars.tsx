@@ -1,8 +1,8 @@
 "use client"
 
-import { Separator } from "@/components/ui/separator";
 import { useOthers, useSelf } from "@liveblocks/react/suspense";
 import { ClientSideSuspense } from "@liveblocks/react/suspense";
+import { Separator } from "@/components/ui/separator";
 
 /* eslint-disable @next/next/no-img-element */
 const AVATAR_SIZE = 36;

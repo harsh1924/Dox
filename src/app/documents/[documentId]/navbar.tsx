@@ -1,23 +1,23 @@
 'use client'
 
+
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs"
+import { useMutation } from "convex/react"
+import { BoldIcon, FileIcon, FileJsonIcon, FilePenIcon, FilePlusIcon, FileTextIcon, GlobeIcon, ItalicIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, StrikethroughIcon, TextIcon, TrashIcon, UnderlineIcon, Undo2Icon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { BoldIcon, FileIcon, FileJsonIcon, FilePenIcon, FilePlusIcon, FileTextIcon, GlobeIcon, ItalicIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, StrikethroughIcon, TextIcon, TrashIcon, UnderlineIcon, Undo2Icon } from "lucide-react"
-import { DocumentInput } from "./document-input"
-
-import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from "@/components/ui/menubar"
-import { BsFilePdf } from "react-icons/bs"
-import { useEditorStore } from "@/store/use-editor-store"
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs"
-import { Avatars } from "./avatars"
-import { Inbox } from "./inbox"
-import { Doc } from "../../../../convex/_generated/dataModel"
-import { useMutation } from "convex/react"
-import { api } from "../../../../convex/_generated/api"
 import { useRouter } from "next/navigation"
+import { BsFilePdf } from "react-icons/bs"
 import { toast } from "sonner"
 import { RemoveDialog } from "@/components/remove-dialog"
 import { RenameDialog } from "@/components/rename-dialog"
+import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from "@/components/ui/menubar"
+import { useEditorStore } from "@/store/use-editor-store"
+import { Avatars } from "./avatars"
+import { DocumentInput } from "./document-input"
+import { Inbox } from "./inbox"
+import { api } from "../../../../convex/_generated/api"
+import { Doc } from "../../../../convex/_generated/dataModel"
 
 interface NavbarProps {
     data: Doc<"documents">;

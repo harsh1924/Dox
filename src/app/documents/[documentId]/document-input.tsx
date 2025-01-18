@@ -1,16 +1,16 @@
 "use client";
 
+import { useStatus } from '@liveblocks/react';
 import { useMutation } from 'convex/react';
-import { BsCloudCheck, BsCloudSlash } from 'react-icons/bs';
+import { LoaderIcon } from 'lucide-react';
 import React, { useRef, useState } from 'react';
-
-import { Id } from '../../../../convex/_generated/dataModel';
-import { api } from '../../../../convex/_generated/api';
-import { useDebounce } from '@/hooks/use-debounce';
+import { BsCloudCheck, BsCloudSlash } from 'react-icons/bs';
 
 import { toast } from 'sonner';
-import { useStatus } from '@liveblocks/react';
-import { LoaderIcon } from 'lucide-react';
+import { useDebounce } from '@/hooks/use-debounce';
+import { api } from '../../../../convex/_generated/api';
+import { Id } from '../../../../convex/_generated/dataModel';
+
 
 interface DocumentTitleProps {
     title: string;
